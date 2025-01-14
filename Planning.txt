@@ -44,3 +44,5 @@ Admin candidate management :
     /candidates -->     POST : create a new a candidate
     /candidates/candidateID -->     PUT : Update the existing a candidate
     /candidates/candidateID -->     DELETE : delete the candidate from list.
+
+Workflow Diagram link - https://drive.google.com/file/d/14oyt0TFg1x-P1CxuI6kw-Z3AIyvVWgbL/view?usp=sharing 
