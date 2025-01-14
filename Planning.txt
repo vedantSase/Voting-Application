@@ -1,0 +1,46 @@
+# Voting Application
+
+What and How it works
+
+models ?
+routes ?
+
+voting functionality
+
+1.  create a new user 
+2. user signin / sign up
+3. vote at once only to only one candidate (user can't vote again)
+4. there is router which shows the list of candidates and their live votes (count)
+    (Sorted by their vote count)
+5. user data contains their one unique government ID proof name : aadhar card
+6. there should be only one admin who can maintain the table of candidates and
+    (he can't able to vote at all)
+7. user can only login with aadhar card number and password.
+8. Admin can't vote at  all.
+9. user can change the password
+ 
+
+________________________________________________________________
+----------------------------------------------------------------
+
+Routes
+
+User Authentication : 
+    /signup --> POST : create a new user
+    / login --> POST : log in an existing account
+
+Voting :
+    /candidates --> GET : get the list of candidates
+    /vote -->   GET : vote for specific candidate
+
+vote count : 
+    /vote/count --> GET : get the list of candidate in sorted order by votes
+
+User Profile :
+    /Profile -->    GET : get the user profile information
+    /Profile/password -->   PUT : change the existing password 
+
+Admin candidate management : 
+    /candidates -->     POST : create a new a candidate
+    /candidates/candidateID -->     PUT : Update the existing a candidate
+    /candidates/candidateID -->     DELETE : delete the candidate from list.
