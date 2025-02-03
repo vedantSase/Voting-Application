@@ -43,23 +43,32 @@ const userSchema = new mongoose.Schema({
 })
 
 // hashing the password field
-userSchema.pre('save',async function(next){
+userSchema.pre('save', async function (next) {
     const user = this ;
 
-    //hash the password only if the user is new
-    if(!user.isModified('Password')) 
-         return next() ;
     try {
-         // hash salt generation 
-         const salt = await bcrypt.genSalt(10);
-         // generate hash password
-         const hashedPassword = await bcrypt.hash(user.Password, salt);
-         // override the plain password with hashed password
-         user.Password = hashedPassword ; 
+        // if user is new then hash the password field
+        if(user.isModified('Password')){
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(user.Password, salt);
+            user.Password = hashedPassword ;
+        }
+
+        // ensure only one admin exists
+        if(user.role === 'admin'){
+            const existingAdmin = await User.findOne({ role: 'admin' });
+            // If an admin already exists and it's not the current user being updated
+            if(existingAdmin && existingAdmin.id !== user.id){
+                return next({error: 'Admin already exists'});
+            }
+        }
+        next() ;    // Proceed with saving the user
     } catch (error) {
-         return next(error) ;
+        return next(error);
     }
 })
+
+
 
 userSchema.methods.comparePassword = async function(clientPassword){
     try {
