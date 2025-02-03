@@ -4,7 +4,7 @@ require('dotenv').config();     //  getting mongo server URL for listening from 
 const mongoURL = 'mongodb://127.0.0.1:27017/Voting';   // the local url of mongo server
 // const mongoURL_Online = <URL>    // the global url of mongo server
 mongoose.connect(mongoURL,{ // establishing connection with database 
-    useNewUrlParser : true, // always required for getting automatially upgraded 
+    useNewUrlParser : true, // always required for getting automatically upgraded 
     useUnifiedTopology : true   // with latest versions of MongoDB
 });
 
@@ -18,7 +18,7 @@ db.on('disconnected',()=>{
     console.log("DataBase connection lost !!!\n--------------------------------");
 });
 db.on('error',()=>{
-    console.log("DataBase Server Error occured\n");
+    console.log("DataBase Server Error occurred\n");
 });
 
 // exportig the objects and functions
